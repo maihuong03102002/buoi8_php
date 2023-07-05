@@ -26,11 +26,25 @@ function getAll()
     $stmt->execute();
     return $stmt->fetchAll();
 }
+function getAll2()
+{
+    $sql = "SELECT * FROM products";
+    $stmt = prepareSQL($sql);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
 
 function create($data)
 {
    
     $sql = "INSERT INTO categories (name) VALUES (:name)";
+    $stmt = prepareSQL($sql);
+    $stmt->execute($data);
+}
+function create2($data)
+{
+   
+    $sql = "INSERT INTO products (name) VALUES (:name)";
     $stmt = prepareSQL($sql);
     $stmt->execute($data);
 }
@@ -49,7 +63,12 @@ function delete($data)
     $stmt = prepareSQL($sql);
     $stmt->execute($data);
 }
-
+function delete2($data)
+{
+    $sql = "DELETE FROM products WHERE id=:id";
+    $stmt = prepareSQL($sql);
+    $stmt->execute($data);
+}
 function update($data)
 {
     $sql = "UPDATE categories  SET name=:name WHERE id=:id";
